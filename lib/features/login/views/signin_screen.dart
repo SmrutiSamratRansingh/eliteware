@@ -1,3 +1,4 @@
+import 'package:eliteware/core/helpers/toast_helper.dart';
 import 'package:eliteware/features/home/views/home.dart';
 import 'package:eliteware/features/login/repository/signin_repository.dart';
 import 'package:eliteware/features/login/usecase/signin_usecase.dart';
@@ -37,13 +38,9 @@ class Signin extends StatelessWidget {
                   height: 200,
                 ),
                 TextFormField(
-                  validator: (val) => (val == ""
-                      ? 'This field is required'
-                      // : !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                      //         .hasMatch(val!)
-                      //     ? 'Enter a Valid Email'
-                      : null),
-                  controller: signinVm.userEmailController,
+                  validator: (val) =>
+                      (val == "" ? 'This field is required' : null),
+                  controller: signinVm.userNameController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Username',
@@ -67,20 +64,6 @@ class Signin extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                // RichText(
-                //     text: TextSpan(children: [
-                //   const TextSpan(
-                //       text: 'Dont have an account? ',
-                //       style: TextStyle(color: Colors.black)),
-                //   TextSpan(
-                //     text: 'Signup',
-                //     style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                //         color: Colors.blue,
-                //         fontWeight: FontWeight.bold,
-                //         decoration: TextDecoration.underline),
-                //     recognizer: TapGestureRecognizer()..onTap = () {},
-                //   ),
-                // ])),
                 const SizedBox(
                   height: 20,
                 ),
@@ -93,8 +76,9 @@ class Signin extends StatelessWidget {
                           final nav = Navigator.of(context);
                           final siginVm = context.read<SigninViewmodel>();
                           if (signinVm.formKey.currentState!.validate()) {
-                            final statusCode = await siginVm.signin();
-                            if (statusCode == 200 || statusCode == 201) {
+                            int? statusCode = await siginVm.signin();
+                            if (statusCode != null && statusCode == 200 ||
+                                statusCode == 201) {
                               nav.pushAndRemoveUntil(
                                   MaterialPageRoute(
                                       builder: (context) => const HomeScreen()),

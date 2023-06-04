@@ -5,7 +5,11 @@ class SigninUsecase {
 
   SigninUsecase({required this.signinRepository});
 
-  signin(String username, String password) async {
-    await signinRepository.signin(username, password);
+  Future<int?> signin(String username, String password) async {
+    try {
+      return await signinRepository.signin(username, password);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

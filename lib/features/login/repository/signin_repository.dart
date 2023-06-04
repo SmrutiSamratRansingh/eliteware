@@ -1,11 +1,15 @@
 import 'package:eliteware/core/client/dio_client.dart';
 
 class Signinrepository {
-  signin(String username, String password) async {
-    Map<String, dynamic> loginData = {
-      "username": username,
-      "password": password
-    };
-    return await DioClient.postRequest(loginData);
+  Future<int?> signin(String username, String password) async {
+    try {
+      Map<String, dynamic> loginData = {
+        "username": username,
+        "password": password
+      };
+      return await DioClient.postRequest(loginData);
+    } catch (e) {
+      rethrow;
+    }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:eliteware/features/home/viewmodel/home_viewmodel.dart';
-import 'package:eliteware/features/stopwatch/views/timer_screen.dart';
+import 'package:eliteware/features/stopwatch/views/stop_watch_screen.dart';
 import 'package:eliteware/features/timer/views/timer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

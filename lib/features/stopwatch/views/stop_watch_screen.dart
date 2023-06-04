@@ -21,12 +21,18 @@ class Stopwaatch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tVm = context.watch<StopwaatchViewmodel>();
+    final sVm = context.watch<StopwaatchViewmodel>();
     return SafeArea(
         child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(
+          height: 40,
+          width: double.infinity,
+        ),
         Text(
-          "${tVm.hours}:${tVm.minutes}:${tVm.seconds}",
+          //"${sVm.hours}:${sVm.minutes}:${sVm.seconds}",
+          '${sVm.hours < 10 ? '0${sVm.hours}:' : '${sVm.hours}:'}${sVm.minutes < 10 ? '0${sVm.minutes}:' : '${sVm.minutes}:'}${sVm.seconds < 10 ? '0${sVm.seconds}' : '${sVm.seconds}'}',
           style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
         ),
         const SizedBox(
@@ -34,14 +40,14 @@ class Stopwaatch extends StatelessWidget {
         ),
         ElevatedButton(
             onPressed: () {
-              final tVm = context.read<StopwaatchViewmodel>();
-              tVm.startTimer();
+              final sVm = context.read<StopwaatchViewmodel>();
+              sVm.startTimer();
             },
             child: const Text("Start Timer")),
         ElevatedButton(
             onPressed: () {
-              final tVm = context.read<StopwaatchViewmodel>();
-              tVm.stopTimer();
+              final sVm = context.read<StopwaatchViewmodel>();
+              sVm.stopTimer();
             },
             child: const Text("Stop Timer")),
         ElevatedButton(
